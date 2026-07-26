@@ -83,15 +83,19 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { title: "PS4 Vault — Download PS4 Games" },
       {
         name: "description",
-        content: "Browse PS4 game covers and grab the download links in one tap.",
+        content: "Tap any PS4 cover to reveal its download links. A clean, fast library of PlayStation 4 games.",
       },
       { property: "og:title", content: "PS4 Vault — Download PS4 Games" },
       {
         property: "og:description",
-        content: "Browse PS4 game covers and grab the download links in one tap.",
+        content: "Tap any PS4 cover to reveal its download links. A clean, fast library of PlayStation 4 games.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "PS4 Vault — Download PS4 Games" },
+      { name: "twitter:description", content: "Tap any PS4 cover to reveal its download links. A clean, fast library of PlayStation 4 games." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/d53b4d5e-fa45-43cd-a61c-a9c1364797a5/id-preview-e4e76561--7034223b-60d7-42e0-b8d6-aca815c8f9b4.lovable.app-1785094655770.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/d53b4d5e-fa45-43cd-a61c-a9c1364797a5/id-preview-e4e76561--7034223b-60d7-42e0-b8d6-aca815c8f9b4.lovable.app-1785094655770.png" },
     ],
     links: [
       {

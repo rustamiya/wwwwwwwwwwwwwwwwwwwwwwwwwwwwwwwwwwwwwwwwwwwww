@@ -21,7 +21,7 @@ export const Route = createFileRoute("/")({
       { property: "og:title", content: "PS4 Vault — Download PS4 Games" },
       {
         property: "og:description",
-        content: "Tap any PS4 cover to reveal its download links.",
+        content: "Tap any PS4 cover to reveal its download links. A clean, fast library of PlayStation 4 games.",
       },
     ],
   }),
