@@ -54,13 +54,13 @@ function AuthPage() {
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center px-4">
+    <div className="flex min-h-screen items-center justify-center px-4" dir="ltr" lang="en">
       <div className="w-full max-w-sm rounded-2xl border border-border bg-card p-8 shadow-glow">
         <Link to="/" className="mb-6 flex items-center gap-2">
           <span className="flex size-9 items-center justify-center rounded-lg bg-gradient-brand">
             <Gamepad2 className="size-5 text-primary-foreground" />
           </span>
-          <span className="font-display text-lg font-bold tracking-wide">PS4 VAULT</span>
+          <span className="font-display text-lg font-bold tracking-wide">VIKING GAMES</span>
         </Link>
 
         <h1 className="font-display text-2xl font-bold">
