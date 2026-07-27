@@ -19,8 +19,8 @@
  */
 
 @theme inline {
-  --font-display: "Chakra Petch", ui-sans-serif, system-ui, sans-serif;
-  --font-sans: "Rubik", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Chakra Petch", "Cairo", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Rubik", "Cairo", ui-sans-serif, system-ui, sans-serif;
   --color-brand: var(--brand);
   --color-brand-foreground: var(--brand-foreground);
   --color-surface: var(--surface);

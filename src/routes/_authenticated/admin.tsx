@@ -18,9 +18,9 @@ import { Skeleton } from "@/components/ui/skeleton";
 export const Route = createFileRoute("/_authenticated/admin")({
   head: () => ({
     meta: [
-      { title: "Manage games — PS4 Vault" },
+      { title: "Manage games — ViKiNG GAMES" },
       { name: "description", content: "Upload PS4 games and manage their download links." },
-      { property: "og:title", content: "Manage games — PS4 Vault" },
+      { property: "og:title", content: "Manage games — ViKiNG GAMES" },
       { property: "og:description", content: "Upload PS4 games and manage their download links." },
       { name: "robots", content: "noindex" },
     ],
@@ -211,7 +211,7 @@ function AdminPage() {
 
   if (isAdmin === false) {
     return (
-      <div className="flex min-h-screen items-center justify-center px-4 text-center">
+      <div className="flex min-h-screen items-center justify-center px-4 text-center" dir="ltr" lang="en">
         <div className="max-w-sm rounded-2xl border border-border bg-card p-8">
           <h1 className="font-display text-xl font-bold">Not an admin</h1>
           <p className="mt-2 text-sm text-muted-foreground">
@@ -226,14 +226,14 @@ function AdminPage() {
   }
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen" dir="ltr" lang="en">
       <header className="sticky top-0 z-30 border-b border-border/60 bg-background/80 backdrop-blur-xl">
         <div className="mx-auto flex max-w-5xl items-center gap-3 px-4 py-4">
           <Link to="/" className="flex items-center gap-2">
             <span className="flex size-9 items-center justify-center rounded-lg bg-gradient-brand">
               <Gamepad2 className="size-5 text-primary-foreground" />
             </span>
-            <span className="font-display text-lg font-bold tracking-wide">PS4 VAULT</span>
+            <span className="font-display text-lg font-bold tracking-wide">VIKING GAMES</span>
           </Link>
           <span className="rounded-md bg-secondary px-2 py-1 text-xs text-muted-foreground">
             Admin

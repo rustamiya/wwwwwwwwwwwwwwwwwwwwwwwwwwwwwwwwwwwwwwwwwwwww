@@ -34,7 +34,7 @@ export function GameDialog({
                   {game.coverSrc ? (
                     <img
                       src={game.coverSrc}
-                      alt={`${game.title} cover art`}
+                      alt={`غلاف لعبة ${game.title}`}
                       className="size-full object-cover"
                     />
                   ) : (
@@ -43,7 +43,7 @@ export function GameDialog({
                     </div>
                   )}
                 </div>
-                <div className="min-w-0 flex-1 text-left">
+                <div className="min-w-0 flex-1 text-start">
                   <DialogTitle className="font-display text-xl leading-tight">
                     {game.title}
                   </DialogTitle>
@@ -61,7 +61,7 @@ export function GameDialog({
 
             <div className="mt-2 space-y-2">
               <p className="font-display text-xs font-semibold uppercase tracking-widest text-muted-foreground">
-                Download links
+                روابط التحميل
               </p>
 
               {isLoading ? (
@@ -71,7 +71,7 @@ export function GameDialog({
                 </>
               ) : !links || links.length === 0 ? (
                 <p className="rounded-xl border border-dashed border-border p-4 text-sm text-muted-foreground">
-                  No links have been added for this game yet.
+                  لم تتم إضافة أي روابط لهذه اللعبة بعد.
                 </p>
               ) : (
                 links.map((link) => (
