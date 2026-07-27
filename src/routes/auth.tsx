@@ -11,10 +11,10 @@ import { Label } from "@/components/ui/label";
 export const Route = createFileRoute("/auth")({
   head: () => ({
     meta: [
-      { title: "Admin sign in — PS4 Vault" },
-      { name: "description", content: "Sign in to manage the PS4 Vault game library." },
-      { property: "og:title", content: "Admin sign in — PS4 Vault" },
-      { property: "og:description", content: "Sign in to manage the PS4 Vault game library." },
+      { title: "Admin sign in — ViKiNG GAMES" },
+      { name: "description", content: "Sign in to manage the ViKiNG GAMES library." },
+      { property: "og:title", content: "Admin sign in — ViKiNG GAMES" },
+      { property: "og:description", content: "Sign in to manage the ViKiNG GAMES library." },
       { name: "robots", content: "noindex" },
     ],
   }),
