@@ -46,13 +46,13 @@ function Index() {
           <span className="flex size-9 items-center justify-center rounded-lg bg-gradient-brand shadow-glow">
             <Gamepad2 className="size-5 text-primary-foreground" />
           </span>
-          <span className="font-display text-lg font-bold tracking-wide">PS4 VAULT</span>
+          <span className="font-display text-lg font-bold tracking-wide">VIKING GAMES</span>
           <Link
             to="/admin"
-            className="ml-auto inline-flex items-center gap-1.5 rounded-md border border-border px-3 py-1.5 text-xs font-medium text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
+            className="ms-auto inline-flex items-center gap-1.5 rounded-md border border-border px-3 py-1.5 text-xs font-medium text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
           >
             <ShieldCheck className="size-3.5" />
-            Admin
+            لوحة التحكم
           </Link>
         </div>
       </header>
@@ -60,33 +60,34 @@ function Index() {
       <main className="mx-auto max-w-6xl px-4 pb-24">
         <section className="py-12 sm:py-16">
           <Badge className="mb-4 bg-secondary text-secondary-foreground">
-            PlayStation 4 library
+            مكتبة بلايستيشن 4
           </Badge>
-          <h1 className="max-w-2xl text-4xl font-bold leading-[1.1] sm:text-6xl">
-            Tap a cover.{" "}
-            <span className="text-gradient-brand">Get the download links.</span>
+          <h1 className="max-w-2xl text-4xl font-bold leading-[1.3] sm:text-6xl">
+            اضغط على الغلاف{" "}
+            <span className="text-gradient-brand">واحصل على روابط التحميل</span>
           </h1>
           <p className="mt-4 max-w-xl text-muted-foreground">
-            Every game in the vault comes with its own set of named links — base game, parts,
-            updates and patches.
+            كل لعبة في المكتبة لها روابطها الخاصة — اللعبة الأساسية، الأجزاء، التحديثات
+            والتصحيحات.
           </p>
 
           <div className="relative mt-8 max-w-md">
-            <Search className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
+            <Search className="pointer-events-none absolute start-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
             <Input
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              placeholder="Search games…"
-              className="h-12 rounded-xl bg-card pl-10 text-base"
-              aria-label="Search games"
+              placeholder="ابحث عن لعبة…"
+              className="h-12 rounded-xl bg-card ps-10 text-base"
+              aria-label="ابحث عن لعبة"
             />
           </div>
         </section>
 
         <section aria-labelledby="library-heading">
           <h2 id="library-heading" className="sr-only">
-            Game library
+            مكتبة الألعاب
           </h2>
+
 
           {isLoading ? (
             <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
