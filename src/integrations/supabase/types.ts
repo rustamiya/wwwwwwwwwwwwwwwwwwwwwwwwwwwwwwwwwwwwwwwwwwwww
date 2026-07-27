@@ -49,6 +49,36 @@ export type Database = {
           },
         ]
       }
+      game_requests: {
+        Row: {
+          contact: string | null
+          created_at: string
+          id: string
+          note: string | null
+          status: string
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          contact?: string | null
+          created_at?: string
+          id?: string
+          note?: string | null
+          status?: string
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          contact?: string | null
+          created_at?: string
+          id?: string
+          note?: string | null
+          status?: string
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       games: {
         Row: {
           cover_url: string | null
