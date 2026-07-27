@@ -12,18 +12,20 @@ import { GameDialog } from "@/components/GameDialog";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "PS4 Vault — Download PS4 Games" },
+      { title: "ViKiNG GAMES — تحميل ألعاب PS4" },
       {
         name: "description",
         content:
-          "Tap any PS4 cover to reveal its download links. A clean, fast library of PlayStation 4 games.",
+          "اضغط على غلاف أي لعبة PS4 لعرض روابط التحميل. مكتبة سريعة ومنظمة لألعاب بلايستيشن 4.",
       },
-      { property: "og:title", content: "PS4 Vault — Download PS4 Games" },
+      { property: "og:title", content: "ViKiNG GAMES — تحميل ألعاب PS4" },
       {
         property: "og:description",
-        content: "Tap any PS4 cover to reveal its download links. A clean, fast library of PlayStation 4 games.",
+        content: "اضغط على غلاف أي لعبة PS4 لعرض روابط التحميل. مكتبة سريعة ومنظمة لألعاب بلايستيشن 4.",
       },
+      { property: "og:url", content: "https://playstation-vault-share.lovable.app/" },
     ],
+    links: [{ rel: "canonical", href: "https://playstation-vault-share.lovable.app/" }],
   }),
   component: Index,
 });
