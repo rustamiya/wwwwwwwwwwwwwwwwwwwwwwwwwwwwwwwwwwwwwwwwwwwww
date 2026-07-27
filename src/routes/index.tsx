@@ -99,12 +99,12 @@ function Index() {
             <div className="rounded-2xl border border-dashed border-border p-12 text-center">
               <Download className="mx-auto mb-3 size-8 text-muted-foreground" />
               <p className="font-display text-lg font-semibold">
-                {games?.length ? "No games match that search" : "The vault is empty"}
+                {games?.length ? "لا توجد نتائج مطابقة للبحث" : "المكتبة فارغة حالياً"}
               </p>
               <p className="mt-1 text-sm text-muted-foreground">
                 {games?.length
-                  ? "Try a different title."
-                  : "Sign in as admin to upload your first game."}
+                  ? "جرّب اسم لعبة آخر."
+                  : "سجّل الدخول كمشرف لإضافة أول لعبة."}
               </p>
             </div>
           ) : (
@@ -114,13 +114,13 @@ function Index() {
                   key={game.id}
                   type="button"
                   onClick={() => setSelected(game)}
-                  className="group overflow-hidden rounded-2xl border border-border bg-card text-left transition-all hover:-translate-y-1 hover:shadow-glow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                  className="group overflow-hidden rounded-2xl border border-border bg-card text-start transition-all hover:-translate-y-1 hover:shadow-glow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                 >
                   <div className="relative aspect-[3/4] overflow-hidden bg-surface-2">
                     {game.coverSrc ? (
                       <img
                         src={game.coverSrc}
-                        alt={`${game.title} cover art`}
+                        alt={`غلاف لعبة ${game.title}`}
                         loading="lazy"
                         className="size-full object-cover transition-transform duration-500 group-hover:scale-105"
                       />
@@ -129,7 +129,7 @@ function Index() {
                         <Gamepad2 className="size-10 text-muted-foreground" />
                       </div>
                     )}
-                    <span className="absolute left-2 top-2 rounded-md bg-background/80 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider backdrop-blur">
+                    <span className="absolute start-2 top-2 rounded-md bg-background/80 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider backdrop-blur">
                       {game.platform}
                     </span>
                   </div>
@@ -137,7 +137,7 @@ function Index() {
                     <p className="truncate font-display text-sm font-semibold">{game.title}</p>
                     <p className="mt-0.5 truncate text-xs text-muted-foreground">
                       {[game.size, game.release_year].filter(Boolean).join(" · ") ||
-                        "View download links"}
+                        "عرض روابط التحميل"}
                     </p>
                   </div>
                 </button>
