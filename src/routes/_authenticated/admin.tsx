@@ -395,6 +395,10 @@ function AdminPage() {
           </div>
         </section>
 
+        <RequestsSection />
+
+
+
         <section>
           <h2 className="font-display text-xl font-bold">Library</h2>
           <div className="mt-4 space-y-3">
