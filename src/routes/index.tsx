@@ -1,13 +1,16 @@
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Link, createFileRoute } from "@tanstack/react-router";
-import { Download, Gamepad2, Search, ShieldCheck } from "lucide-react";
+import { Download, Gamepad2, PlusCircle, Search, ShieldCheck } from "lucide-react";
 
 import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
 import { gamesQuery, type GameWithCover } from "@/lib/games";
 import { GameDialog } from "@/components/GameDialog";
+import { RequestGameDialog } from "@/components/RequestGameDialog";
+
 
 export const Route = createFileRoute("/")({
   head: () => ({
