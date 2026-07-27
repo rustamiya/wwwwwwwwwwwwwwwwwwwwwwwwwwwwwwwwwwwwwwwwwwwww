@@ -1,13 +1,16 @@
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Link, createFileRoute } from "@tanstack/react-router";
-import { Download, Gamepad2, Search, ShieldCheck } from "lucide-react";
+import { Download, Gamepad2, PlusCircle, Search, ShieldCheck } from "lucide-react";
 
 import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
 import { gamesQuery, type GameWithCover } from "@/lib/games";
 import { GameDialog } from "@/components/GameDialog";
+import { RequestGameDialog } from "@/components/RequestGameDialog";
+
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -47,15 +50,26 @@ function Index() {
             <Gamepad2 className="size-5 text-primary-foreground" />
           </span>
           <span className="font-display text-lg font-bold tracking-wide">VIKING GAMES</span>
-          <Link
-            to="/admin"
-            className="ms-auto inline-flex items-center gap-1.5 rounded-md border border-border px-3 py-1.5 text-xs font-medium text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
-          >
-            <ShieldCheck className="size-3.5" />
-            لوحة التحكم
-          </Link>
+          <div className="ms-auto flex items-center gap-2">
+            <RequestGameDialog
+              trigger={
+                <Button size="sm" className="gap-1.5">
+                  <PlusCircle className="size-3.5" />
+                  اطلب لعبة
+                </Button>
+              }
+            />
+            <Link
+              to="/admin"
+              className="inline-flex items-center gap-1.5 rounded-md border border-border px-3 py-1.5 text-xs font-medium text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
+            >
+              <ShieldCheck className="size-3.5" />
+              لوحة التحكم
+            </Link>
+          </div>
         </div>
       </header>
+
 
       <main className="mx-auto max-w-6xl px-4 pb-24">
         <section className="py-12 sm:py-16">

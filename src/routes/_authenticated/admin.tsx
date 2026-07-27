@@ -395,6 +395,10 @@ function AdminPage() {
           </div>
         </section>
 
+        <RequestsSection />
+
+
+
         <section>
           <h2 className="font-display text-xl font-bold">Library</h2>
           <div className="mt-4 space-y-3">
@@ -446,5 +450,116 @@ function AdminPage() {
         </section>
       </main>
     </div>
+  );
+}
+
+type GameRequest = {
+  id: string;
+  title: string;
+  note: string | null;
+  contact: string | null;
+  status: string;
+  created_at: string;
+};
+
+function RequestsSection() {
+  const queryClient = useQueryClient();
+
+  const { data: requests, isLoading } = useQuery({
+    queryKey: ["game-requests"],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("game_requests")
+        .select("id, title, note, contact, status, created_at")
+        .order("created_at", { ascending: false });
+      if (error) throw error;
+      return data as GameRequest[];
+    },
+  });
+
+  const setStatus = useMutation({
+    mutationFn: async ({ id, status }: { id: string; status: string }) => {
+      const { error } = await supabase.from("game_requests").update({ status }).eq("id", id);
+      if (error) throw error;
+    },
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: ["game-requests"] }),
+    onError: (err: Error) => toast.error(err.message),
+  });
+
+  const removeRequest = useMutation({
+    mutationFn: async (id: string) => {
+      const { error } = await supabase.from("game_requests").delete().eq("id", id);
+      if (error) throw error;
+    },
+    onSuccess: () => {
+      toast.success("Request removed");
+      queryClient.invalidateQueries({ queryKey: ["game-requests"] });
+    },
+    onError: (err: Error) => toast.error(err.message),
+  });
+
+  const pending = (requests ?? []).filter((r) => r.status === "new").length;
+
+  return (
+    <section>
+      <h2 className="font-display text-xl font-bold">
+        Requests{pending > 0 ? ` (${pending} new)` : ""}
+      </h2>
+      <p className="mt-1 text-sm text-muted-foreground">
+        Games visitors asked you to upload.
+      </p>
+      <div className="mt-4 space-y-3">
+        {isLoading ? (
+          <>
+            <Skeleton className="h-16 rounded-xl" />
+            <Skeleton className="h-16 rounded-xl" />
+          </>
+        ) : (requests ?? []).length === 0 ? (
+          <p className="rounded-xl border border-dashed border-border p-6 text-sm text-muted-foreground">
+            No requests yet.
+          </p>
+        ) : (
+          requests!.map((req) => (
+            <div
+              key={req.id}
+              className="flex flex-wrap items-center gap-3 rounded-xl border border-border bg-card p-3"
+            >
+              <div className="min-w-0 flex-1">
+                <p className="truncate font-display font-semibold">
+                  {req.title}
+                  {req.status === "done" && (
+                    <span className="ms-2 rounded bg-secondary px-1.5 py-0.5 text-[10px] uppercase text-muted-foreground">
+                      done
+                    </span>
+                  )}
+                </p>
+                <p className="truncate text-xs text-muted-foreground">
+                  {[req.contact, req.note, new Date(req.created_at).toLocaleDateString("en-GB")]
+                    .filter(Boolean)
+                    .join(" · ")}
+                </p>
+              </div>
+              <Button
+                variant="secondary"
+                size="sm"
+                onClick={() =>
+                  setStatus.mutate({ id: req.id, status: req.status === "done" ? "new" : "done" })
+                }
+              >
+                {req.status === "done" ? "Reopen" : "Mark done"}
+              </Button>
+              <Button
+                variant="ghost"
+                size="icon"
+                aria-label={`Delete request ${req.title}`}
+                onClick={() => removeRequest.mutate(req.id)}
+              >
+                <Trash2 className="size-4 text-destructive" />
+              </Button>
+            </div>
+          ))
+        )}
+      </div>
+    </section>
   );
 }
