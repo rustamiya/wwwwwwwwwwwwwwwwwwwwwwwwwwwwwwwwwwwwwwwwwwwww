@@ -211,7 +211,7 @@ function AdminPage() {
 
   if (isAdmin === false) {
     return (
-      <div className="flex min-h-screen items-center justify-center px-4 text-center">
+      <div className="flex min-h-screen items-center justify-center px-4 text-center" dir="ltr" lang="en">
         <div className="max-w-sm rounded-2xl border border-border bg-card p-8">
           <h1 className="font-display text-xl font-bold">Not an admin</h1>
           <p className="mt-2 text-sm text-muted-foreground">
@@ -226,7 +226,7 @@ function AdminPage() {
   }
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen" dir="ltr" lang="en">
       <header className="sticky top-0 z-30 border-b border-border/60 bg-background/80 backdrop-blur-xl">
         <div className="mx-auto flex max-w-5xl items-center gap-3 px-4 py-4">
           <Link to="/" className="flex items-center gap-2">
