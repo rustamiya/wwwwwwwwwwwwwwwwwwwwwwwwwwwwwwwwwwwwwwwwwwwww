@@ -448,10 +448,106 @@ function AdminPage() {
             )}
           </div>
         </section>
+
+        <AdminsSection />
       </main>
     </div>
   );
 }
+
+function AdminsSection() {
+  const queryClient = useQueryClient();
+  const list = useServerFn(listAdmins);
+  const add = useServerFn(addAdminByEmail);
+  const drop = useServerFn(removeAdmin);
+  const [email, setEmail] = useState("");
+
+  const { data: admins, isLoading } = useQuery({
+    queryKey: ["admins"],
+    queryFn: () => list(),
+  });
+
+  const addAdmin = useMutation({
+    mutationFn: (value: string) => add({ data: { email: value } }),
+    onSuccess: (res) => {
+      toast.success(`${res.email} is now an admin`);
+      setEmail("");
+      queryClient.invalidateQueries({ queryKey: ["admins"] });
+    },
+    onError: (err: Error) => toast.error(err.message),
+  });
+
+  const removeOne = useMutation({
+    mutationFn: (userId: string) => drop({ data: { userId } }),
+    onSuccess: () => {
+      toast.success("Admin access removed");
+      queryClient.invalidateQueries({ queryKey: ["admins"] });
+    },
+    onError: (err: Error) => toast.error(err.message),
+  });
+
+  return (
+    <section>
+      <h2 className="font-display text-xl font-bold">Admins</h2>
+      <p className="mt-1 text-sm text-muted-foreground">
+        The person must create an account at /auth first, then add their email here.
+      </p>
+
+      <form
+        className="mt-4 flex flex-wrap gap-2"
+        onSubmit={(e) => {
+          e.preventDefault();
+          if (email.trim()) addAdmin.mutate(email);
+        }}
+      >
+        <Input
+          type="email"
+          required
+          placeholder="new.admin@example.com"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          className="max-w-xs flex-1"
+        />
+        <Button type="submit" disabled={addAdmin.isPending}>
+          {addAdmin.isPending && <Loader2 className="mr-2 size-4 animate-spin" />}
+          Add admin
+        </Button>
+      </form>
+
+      <div className="mt-4 space-y-3">
+        {isLoading ? (
+          <Skeleton className="h-14 rounded-xl" />
+        ) : (
+          (admins ?? []).map((a) => (
+            <div
+              key={a.id}
+              className="flex items-center gap-3 rounded-xl border border-border bg-card p-3"
+            >
+              <div className="min-w-0 flex-1">
+                <p className="truncate font-display font-semibold">{a.email}</p>
+                <p className="text-xs text-muted-foreground">
+                  Added {new Date(a.createdAt).toLocaleDateString("en-GB")}
+                  {a.isSelf ? " · you" : ""}
+                </p>
+              </div>
+              {!a.isSelf && (
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  aria-label={`Remove admin ${a.email}`}
+                  onClick={() => removeOne.mutate(a.userId)}
+                >
+                  <Trash2 className="size-4 text-destructive" />
+                </Button>
+              )}
+            </div>
+          ))
+        )}
+      </div>
+    </section>
+  );
+}
+
 
 type GameRequest = {
   id: string;
