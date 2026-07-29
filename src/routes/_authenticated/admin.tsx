@@ -7,7 +7,13 @@ import { toast } from "sonner";
 import { z } from "zod";
 
 import { supabase } from "@/integrations/supabase/client";
-import { claimFirstAdmin } from "@/lib/admin.functions";
+import {
+  claimFirstAdmin,
+  listAdmins,
+  addAdminByEmail,
+  removeAdmin,
+} from "@/lib/admin.functions";
+
 import { gamesQuery, fetchLinks, STORAGE_PREFIX, type GameWithCover } from "@/lib/games";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
